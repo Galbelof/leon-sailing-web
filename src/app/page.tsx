@@ -9,7 +9,8 @@ export default function Home() {
 
   // Datos de contacto de Morin
   const telefonoWhatsApp = "34631596309"; 
-  const emailContacto = "leonsailingtenerife@gmail.com";
+  const emailContactobarco = "leonsailingtenerife@gmail.com";
+  const emailContactoalquiler = "maureen@whitehotdesign.it";
 
   // Diccionario con todas las traducciones separadas por idioma
   const textos = {
@@ -232,7 +233,7 @@ export default function Home() {
               <p className="text-slate-600 font-light leading-relaxed mb-6">
                 {t.inmoDesc}
               </p>
-              <a href={`mailto:${emailContacto}?subject=Real%20Estate%20Inquiry`} className="inline-flex items-center text-sky-600 font-semibold hover:text-sky-700 transition-colors">
+              <a href={`mailto:${emailContactoalquiler}?subject=Real%20Estate%20Inquiry`} className="inline-flex items-center text-sky-600 font-semibold hover:text-sky-700 transition-colors">
                 {t.btnEmail} <span className="ml-2">→</span>
               </a>
             </div>
@@ -251,7 +252,7 @@ export default function Home() {
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.93 0c3.165.001 6.14 1.233 8.377 3.469 2.237 2.236 3.468 5.21 3.46 8.377-.018 6.585-5.354 11.933-11.886 11.933-2.001-.002-3.974-.509-5.711-1.472L0 24zm6.59-4.846c1.6.95 3.182 1.449 4.745 1.45 5.332 0 9.673-4.34 9.686-9.674.006-2.585-1.002-5.016-2.837-6.853A9.559 9.559 0 0 0 11.93 2.7c-5.338 0-9.682 4.346-9.694 9.682-.005 1.706.452 3.37 1.326 4.834L2.51 21.49l4.137-1.336z"/></svg>
               {t.btnWhatsapp}
             </a>
-            <a href={`mailto:${emailContacto}?subject=${t.asuntoEmail}`} className="px-8 py-4 bg-white/10 hover:bg-white/20 font-semibold rounded-xl transition-all">
+            <a href={`mailto:${emailContactobarco}?subject=${t.asuntoEmail}`} className="px-8 py-4 bg-white/10 hover:bg-white/20 font-semibold rounded-xl transition-all">
               {t.btnEmail}
             </a>
           </div>
