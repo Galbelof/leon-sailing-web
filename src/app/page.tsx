@@ -103,7 +103,13 @@ export default function Home() {
 
         <header className="relative z-10 flex justify-between items-center w-full">
           <div className="flex items-center gap-4">
-            <Image src="/logo-limpio.png" alt="Leon Tenerife" width={180} height={60} className="object-contain" />
+            <Image 
+              src="/logo-limpio.png" 
+              alt="Leon Tenerife" 
+              width={180} 
+              height={60} 
+              className="object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" 
+            />
           </div>
 
           {/* Botonera para cambiar el idioma */}
