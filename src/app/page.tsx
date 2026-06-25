@@ -7,7 +7,6 @@ export default function Home() {
   const [idioma, setIdioma] = useState("es");
   const [isPlaying, setIsPlaying] = useState(false);
   
-  // NUEVO ESTADO: Controla qué foto está ampliada (si es null, no hay ninguna abierta)
   const [fotoAmpliada, setFotoAmpliada] = useState<string | null>(null);
   
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -42,7 +41,6 @@ export default function Home() {
   const emailContactobarco = "leonsailingtenerife@gmail.com";
   const emailContactoalquiler = "maureen@whitehotdesign.it";
 
-  // Lista de las fotos de la galería (fácil de modificar en el futuro)
   const fotosGaleria = [
     "/galeria-1.jpg",
     "/galeria-2.jpg",
@@ -86,7 +84,12 @@ export default function Home() {
       secInmo: "Tu hogar en Tenerife",
       inmoDesc: "Si durante su estancia descubren que Tenerife es el lugar donde les gustaría vivir o invertir, estaremos encantados de asesorarles como agentes inmobiliarios. Les ayudaremos a encontrar la propiedad ideal y les acompañaremos en todo el proceso.",
       
-      ctaFinal: "¿Listo para tu aventura en el Atlántico?"
+      ctaFinal: "¿Listo para tu aventura en el Atlántico?",
+
+      // Textos Legales
+      avisoLegal: "Aviso Legal",
+      privacidad: "Política de Privacidad",
+      cookies: "Política de Cookies",
     },
     en: {
       slogan: "Private sailing charter in Tenerife",
@@ -121,7 +124,12 @@ export default function Home() {
       secInmo: "Your Home in Tenerife",
       inmoDesc: "If during your stay you discover that Tenerife is a place where you would like to live or invest, we would be delighted to assist you as real estate agents. We will help you find the ideal property and guide you through every step of the process.",
       
-      ctaFinal: "Ready for your Atlantic adventure?"
+      ctaFinal: "Ready for your Atlantic adventure?",
+
+      // Textos Legales
+      avisoLegal: "Legal Notice",
+      privacidad: "Privacy Policy",
+      cookies: "Cookies Policy",
     }
   };
 
@@ -131,16 +139,13 @@ export default function Home() {
   return (
     <main className="w-full font-sans bg-[#F8FAFC] relative">
       
-      {/* Audio oculto */}
       <audio ref={audioRef} src="/musica.mp3" loop />
 
-      {/* --- VISOR DE IMÁGENES A PANTALLA COMPLETA --- */}
       {fotoAmpliada && (
         <div 
           className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-8 backdrop-blur-sm transition-all"
-          onClick={() => setFotoAmpliada(null)} // Cierra al hacer clic en el fondo oscuro
+          onClick={() => setFotoAmpliada(null)} 
         >
-          {/* Botón de cerrar (X) */}
           <button 
             className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-2"
             onClick={() => setFotoAmpliada(null)}
@@ -148,10 +153,9 @@ export default function Home() {
             <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
           
-          {/* Contenedor de la foto grande */}
           <div 
             className="relative w-full max-w-6xl h-[85vh]" 
-            onClick={(e) => e.stopPropagation()} // Evita que se cierre al hacer clic directo en la foto
+            onClick={(e) => e.stopPropagation()} 
           >
             <Image 
               src={fotoAmpliada} 
@@ -163,10 +167,8 @@ export default function Home() {
         </div>
       )}
       
-      {/* --- Portada (Hero Section) con Vídeo --- */}
       <section className="relative min-h-screen w-full flex flex-col justify-between p-6 md:p-12 text-white overflow-hidden">
         
-        {/* Vídeo de Fondo */}
         <div className="absolute inset-0 z-0 bg-black">
           <video
             ref={videoRef}
@@ -260,7 +262,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- Sección: La experiencia --- */}
       <section className="py-20 px-6 md:px-12 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-8">
           {t.secTenerife}
@@ -271,7 +272,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- Sección: Ubicación y Rutas --- */}
       <section className="py-16 px-6 md:px-12 bg-white border-t border-slate-200">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -297,7 +297,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SECCIÓN: GALERÍA DE FOTOS (CON MODAL / PANTALLA COMPLETA) --- */}
       <section className="py-20 px-6 md:px-12 bg-slate-50 border-t border-slate-200">
         <div className="max-w-6xl mx-auto">
           
@@ -314,12 +313,11 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {/* Aquí generamos las fotos automáticamente desde la lista fotosGaleria */}
             {fotosGaleria.map((rutaFoto, index) => (
               <div 
                 key={index} 
                 className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm cursor-pointer"
-                onClick={() => setFotoAmpliada(rutaFoto)} // Al hacer clic, abre la foto en grande
+                onClick={() => setFotoAmpliada(rutaFoto)} 
               >
                 <Image 
                   src={rutaFoto} 
@@ -327,8 +325,6 @@ export default function Home() {
                   fill 
                   className="object-cover transition-transform duration-700 group-hover:scale-110" 
                 />
-                
-                {/* Capa oscura y el icono de lupa que aparece al pasar el ratón */}
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full text-white">
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
@@ -341,7 +337,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- Sección: Historia e Inmobiliaria --- */}
       <section className="bg-white py-20 px-6 md:px-12 border-y border-slate-200">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
@@ -375,7 +370,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- Llamada a la acción final --- */}
       <section className="bg-slate-900 text-white py-24 px-6 md:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-10">{t.ctaFinal}</h2>
@@ -398,9 +392,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-950 text-slate-500 py-8 px-6 text-center text-sm">
-        <p>© {new Date().getFullYear()} Leon Sailing Tenerife. {t.derechos}</p>
+      {/* --- NUEVO FOOTER CON TEXTOS LEGALES --- */}
+      <footer className="bg-slate-950 text-slate-400 py-10 px-6 text-sm">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <p>© {new Date().getFullYear()} Leon Sailing Tenerife. {t.derechos}</p>
+          
+          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-6 text-slate-500">
+            {/* Los enlaces ahora tienen "#" por defecto hasta que crees las páginas */}
+            <a href="#" className="hover:text-white transition-colors">{t.avisoLegal}</a>
+            <span className="hidden md:inline text-slate-700">|</span>
+            <a href="#" className="hover:text-white transition-colors">{t.privacidad}</a>
+            <span className="hidden md:inline text-slate-700">|</span>
+            <a href="#" className="hover:text-white transition-colors">{t.cookies}</a>
+          </div>
+        </div>
       </footer>
 
     </main>
