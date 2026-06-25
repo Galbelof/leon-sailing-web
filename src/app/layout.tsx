@@ -23,9 +23,7 @@ export const metadata: Metadata = {
     siteName: "León Sailing Tenerife",
     images: [
       {
-        // NOTA: Cuando tengas una foto bonita del barco en tu carpeta public, pon su nombre aquí. 
-        // Ejemplo: "/barco-portada.jpg"
-        url: "/ruta-a-tu-imagen.jpg", 
+        url: "/velero-bg.jpg", 
         width: 1200,
         height: 630,
       },
@@ -42,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="es" // ¡Cambiado a español!
+      lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
