@@ -1,13 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react"; 
+import { useState, useRef, useEffect } from "react"; 
 
 export default function Home() {
   const [idioma, setIdioma] = useState("es");
+  
+  // Referencia para controlar el vídeo directamente por JavaScript
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Este efecto obliga al móvil a silenciar y reproducir el vídeo nada más cargar la página
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((error) => {
+        console.log("El navegador bloqueó el autoplay temporalmente:", error);
+      });
+    }
+  }, []);
 
   const telefonoWhatsApp = "34631596309"; 
-  const telefonoFormateado = "+34 631 59 63 09"; // Añadido para que se vea bonito en texto
+  const telefonoFormateado = "+34 631 59 63 09"; 
   const emailContactobarco = "leonsailingtenerife@gmail.com";
   const emailContactoalquiler = "maureen@whitehotdesign.it";
 
@@ -88,14 +102,14 @@ export default function Home() {
         {/* Vídeo de Fondo */}
         <div className="absolute inset-0 z-0 bg-black">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover opacity-60 pointer-events-none"
           >
             <source src="/video_barco.mp4" type="video/mp4" />
-            Tu navegador no soporta vídeos HTML5.
           </video>
         </div>
 
