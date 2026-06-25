@@ -5,13 +5,11 @@ import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
   const [idioma, setIdioma] = useState("es");
-  const [isPlaying, setIsPlaying] = useState(false); // Estado para controlar si suena la música
+  const [isPlaying, setIsPlaying] = useState(false);
   
-  // Referencias
   const videoRef = useRef<HTMLVideoElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null); // Referencia para el audio
+  const audioRef = useRef<HTMLAudioElement>(null); 
 
-  // Efecto para el VÍDEO (silenciado automático para móviles)
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = true;
@@ -21,7 +19,6 @@ export default function Home() {
     }
   }, []);
 
-  // Función para encender o apagar la música
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -63,6 +60,11 @@ export default function Home() {
       ubiPuertoDesc: "Nuestro velero zarpa desde el encantador puerto de Marina del Sur, situado a tan solo 15 km del Aeropuerto de Tenerife Sur. Un punto de partida ideal y de fácil acceso.",
       ubiRutasTitulo: "A dónde podemos navegar",
       ubiRutasDesc: "Dependiendo de los días que alquiles, podemos navegar por la costa de Tenerife o emprender travesías más largas hacia nuestras islas vecinas: La Gomera, La Palma o El Hierro.",
+
+      // Textos nuevos para la Galería
+      secGaleriaPre: "Nuestro Velero",
+      secGaleriaTitulo: "El León",
+      secGaleriaDesc: "Diseño elegante, amplios espacios en cubierta y un interior cuidado al detalle para garantizar tu máximo confort y seguridad durante la travesía.",
       
       secHistoria: "Nuestra Historia",
       histSub: "Bienvenidos a bordo de León.",
@@ -94,6 +96,11 @@ export default function Home() {
       ubiPuertoDesc: "Our sailboat departs from the charming port of Marina del Sur, located just 15 km from Tenerife South Airport. An ideal and easily accessible starting point.",
       ubiRutasTitulo: "Where we can sail",
       ubiRutasDesc: "Depending on the days you charter, we can sail along the coast of Tenerife or embark on longer journeys to our neighboring islands: La Gomera, La Palma, or El Hierro.",
+
+      // Textos nuevos para la Galería (Inglés)
+      secGaleriaPre: "Our Sailboat",
+      secGaleriaTitulo: "The León",
+      secGaleriaDesc: "Elegant design, spacious decks, and a meticulously crafted interior to ensure your maximum comfort and safety during the journey.",
       
       secHistoria: "Our Story",
       histSub: "Welcome Aboard León.",
@@ -145,7 +152,6 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4">
-            
             {/* Botón de Música */}
             <button 
               onClick={toggleAudio}
@@ -153,10 +159,8 @@ export default function Home() {
               title={isPlaying ? "Pausar música" : "Reproducir música"}
             >
               {isPlaying ? (
-                // Icono de volumen activo
                 <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z"/></svg>
               ) : (
-                // Icono de volumen silenciado
                 <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
               )}
             </button>
@@ -208,15 +212,12 @@ export default function Home() {
             </a>
           </div>
 
-          {/* TEXTO DE RESPALDO EN PORTADA */}
           <div className="mt-4 flex flex-col gap-1 text-white/80 text-sm md:text-base font-light drop-shadow-md">
             <p className="flex items-center gap-2">📞 {telefonoFormateado}</p>
             <p className="flex items-center gap-2">✉️ {emailContactobarco}</p>
           </div>
-
         </div>
 
-        {/* Icono animado para indicar que hay scroll hacia abajo */}
         <div className="relative z-10 w-full flex justify-center pb-4 opacity-80 animate-bounce hidden md:flex drop-shadow-md">
           <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
@@ -237,8 +238,6 @@ export default function Home() {
       <section className="py-16 px-6 md:px-12 bg-white border-t border-slate-200">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            {/* Tarjeta de Ubicación */}
             <div className="flex gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow">
               <div className="text-4xl">📍</div>
               <div>
@@ -248,8 +247,6 @@ export default function Home() {
                 </p>
               </div>
             </div>
-
-            {/* Tarjeta de Rutas */}
             <div className="flex gap-4 p-6 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-md transition-shadow">
               <div className="text-4xl">🗺️</div>
               <div>
@@ -259,15 +256,72 @@ export default function Home() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- NUEVA SECCIÓN: GALERÍA DE FOTOS --- */}
+      <section className="py-20 px-6 md:px-12 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-6xl mx-auto">
+          
+          <div className="text-center mb-12">
+            <span className="text-sky-600 font-bold tracking-widest uppercase text-sm mb-2 block">
+              {t.secGaleriaPre}
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+              {t.secGaleriaTitulo}
+            </h2>
+            <p className="text-slate-600 font-light leading-relaxed max-w-2xl mx-auto">
+              {t.secGaleriaDesc}
+            </p>
+          </div>
+
+          {/* Cuadrícula de fotos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            
+            {/* Foto 1 */}
+            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
+              <Image src="/galeria-1.jpg" alt="Velero Leon Tenerife 1" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+
+            {/* Foto 2 */}
+            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
+              <Image src="/galeria-2.jpg" alt="Velero Leon Tenerife 2" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+
+            {/* Foto 3 */}
+            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
+              <Image src="/galeria-3.jpg" alt="Velero Leon Tenerife 3" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+
+            {/* Foto 4 */}
+            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
+              <Image src="/galeria-4.jpg" alt="Velero Leon Tenerife 4" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+
+            {/* Foto 5 */}
+            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
+              <Image src="/galeria-5.jpg" alt="Velero Leon Tenerife 5" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+
+            {/* Foto 6 */}
+            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
+              <Image src="/galeria-6.jpg" alt="Velero Leon Tenerife 6" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
 
           </div>
         </div>
       </section>
 
-      {/* Sección: Historia e Inmobiliaria */}
+      {/* --- Sección: Historia e Inmobiliaria --- */}
       <section className="bg-white py-20 px-6 md:px-12 border-y border-slate-200">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          
           <div>
             <span className="text-sky-600 font-bold tracking-widest uppercase text-sm mb-2 block">
               {t.secHistoria}
@@ -281,7 +335,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Tarjeta destacada para la parte inmobiliaria */}
           <div className="bg-slate-50 p-8 md:p-10 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
             <div className="absolute top-0 right-0 w-32 h-32 bg-sky-100 rounded-bl-full -z-0 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
             <div className="relative z-10">
@@ -297,11 +350,10 @@ export default function Home() {
               </a>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* Llamada a la acción final */}
+      {/* --- Llamada a la acción final --- */}
       <section className="bg-slate-900 text-white py-24 px-6 md:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-10">{t.ctaFinal}</h2>
@@ -316,13 +368,11 @@ export default function Home() {
             </a>
           </div>
 
-          {/* TEXTO DE RESPALDO EN FOOTER */}
           <div className="mt-8 pt-6 border-t border-white/10 text-slate-400 text-sm font-light flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6">
             <p>📞 {telefonoFormateado}</p>
             <p className="hidden md:block">|</p>
             <p>✉️ {emailContactobarco}</p>
           </div>
-
         </div>
       </section>
 
