@@ -7,6 +7,9 @@ export default function Home() {
   const [idioma, setIdioma] = useState("es");
   const [isPlaying, setIsPlaying] = useState(false);
   
+  // NUEVO ESTADO: Controla qué foto está ampliada (si es null, no hay ninguna abierta)
+  const [fotoAmpliada, setFotoAmpliada] = useState<string | null>(null);
+  
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null); 
 
@@ -39,6 +42,16 @@ export default function Home() {
   const emailContactobarco = "leonsailingtenerife@gmail.com";
   const emailContactoalquiler = "maureen@whitehotdesign.it";
 
+  // Lista de las fotos de la galería (fácil de modificar en el futuro)
+  const fotosGaleria = [
+    "/galeria-1.jpg",
+    "/galeria-2.jpg",
+    "/galeria-3.jpg",
+    "/galeria-4.jpg",
+    "/galeria-5.jpg",
+    "/galeria-6.jpg"
+  ];
+
   const textos = {
     es: {
       slogan: "Chárter a vela, privado en Tenerife",
@@ -61,10 +74,9 @@ export default function Home() {
       ubiRutasTitulo: "A dónde podemos navegar",
       ubiRutasDesc: "Dependiendo de los días que alquiles, podemos navegar por la costa de Tenerife o emprender travesías más largas hacia nuestras islas vecinas: La Gomera, La Palma o El Hierro.",
 
-      // Textos nuevos para la Galería
       secGaleriaPre: "Nuestro Velero",
       secGaleriaTitulo: "El León",
-      secGaleriaDesc: "Diseño elegante, amplios espacios en cubierta y un interior cuidado al detalle para garantizar tu máximo confort y seguridad durante la travesía.",
+      secGaleriaDesc: "Haz clic en las imágenes para ver cada detalle de nuestro barco, diseñado para garantizar tu confort y seguridad.",
       
       secHistoria: "Nuestra Historia",
       histSub: "Bienvenidos a bordo de León.",
@@ -97,10 +109,9 @@ export default function Home() {
       ubiRutasTitulo: "Where we can sail",
       ubiRutasDesc: "Depending on the days you charter, we can sail along the coast of Tenerife or embark on longer journeys to our neighboring islands: La Gomera, La Palma, or El Hierro.",
 
-      // Textos nuevos para la Galería (Inglés)
       secGaleriaPre: "Our Sailboat",
       secGaleriaTitulo: "The León",
-      secGaleriaDesc: "Elegant design, spacious decks, and a meticulously crafted interior to ensure your maximum comfort and safety during the journey.",
+      secGaleriaDesc: "Click on the images to see every detail of our boat, designed to ensure your comfort and safety.",
       
       secHistoria: "Our Story",
       histSub: "Welcome Aboard León.",
@@ -118,10 +129,39 @@ export default function Home() {
   const mensajeWhatsApp = encodeURIComponent(t.mensajeWa);
   
   return (
-    <main className="w-full font-sans bg-[#F8FAFC]">
+    <main className="w-full font-sans bg-[#F8FAFC] relative">
       
       {/* Audio oculto */}
       <audio ref={audioRef} src="/musica.mp3" loop />
+
+      {/* --- VISOR DE IMÁGENES A PANTALLA COMPLETA --- */}
+      {fotoAmpliada && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-8 backdrop-blur-sm transition-all"
+          onClick={() => setFotoAmpliada(null)} // Cierra al hacer clic en el fondo oscuro
+        >
+          {/* Botón de cerrar (X) */}
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-2"
+            onClick={() => setFotoAmpliada(null)}
+          >
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+          
+          {/* Contenedor de la foto grande */}
+          <div 
+            className="relative w-full max-w-6xl h-[85vh]" 
+            onClick={(e) => e.stopPropagation()} // Evita que se cierre al hacer clic directo en la foto
+          >
+            <Image 
+              src={fotoAmpliada} 
+              alt="Velero Ampliado" 
+              fill 
+              className="object-contain" 
+            />
+          </div>
+        </div>
+      )}
       
       {/* --- Portada (Hero Section) con Vídeo --- */}
       <section className="relative min-h-screen w-full flex flex-col justify-between p-6 md:p-12 text-white overflow-hidden">
@@ -152,7 +192,6 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Botón de Música */}
             <button 
               onClick={toggleAudio}
               className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-black/20 backdrop-blur-md rounded-full border border-white/20 text-white transition-all hover:bg-white/20 hover:scale-105"
@@ -165,7 +204,6 @@ export default function Home() {
               )}
             </button>
 
-            {/* Botonera de banderas para idiomas */}
             <div className="flex items-center gap-2 bg-black/20 backdrop-blur-md rounded-full p-1.5 border border-white/20">
               <button 
                 onClick={() => setIdioma("es")}
@@ -189,7 +227,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Textos principales de la portada */}
         <div className="relative z-10 max-w-3xl my-auto pt-12 md:pt-0">
           <span className="inline-block py-1 px-3 mb-6 border border-sky-400/50 rounded-full text-sky-300 text-xs md:text-sm font-semibold tracking-widest uppercase backdrop-blur-sm bg-black/20">
             {t.slogan}
@@ -260,7 +297,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- NUEVA SECCIÓN: GALERÍA DE FOTOS --- */}
+      {/* --- SECCIÓN: GALERÍA DE FOTOS (CON MODAL / PANTALLA COMPLETA) --- */}
       <section className="py-20 px-6 md:px-12 bg-slate-50 border-t border-slate-200">
         <div className="max-w-6xl mx-auto">
           
@@ -276,46 +313,31 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Cuadrícula de fotos */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            
-            {/* Foto 1 */}
-            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
-              <Image src="/galeria-1.jpg" alt="Velero Leon Tenerife 1" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-
-            {/* Foto 2 */}
-            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
-              <Image src="/galeria-2.jpg" alt="Velero Leon Tenerife 2" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-
-            {/* Foto 3 */}
-            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
-              <Image src="/galeria-3.jpg" alt="Velero Leon Tenerife 3" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-
-            {/* Foto 4 */}
-            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
-              <Image src="/galeria-4.jpg" alt="Velero Leon Tenerife 4" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-
-            {/* Foto 5 */}
-            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
-              <Image src="/galeria-5.jpg" alt="Velero Leon Tenerife 5" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-
-            {/* Foto 6 */}
-            <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm">
-              <Image src="/galeria-6.jpg" alt="Velero Leon Tenerife 6" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
-            </div>
-
+            {/* Aquí generamos las fotos automáticamente desde la lista fotosGaleria */}
+            {fotosGaleria.map((rutaFoto, index) => (
+              <div 
+                key={index} 
+                className="relative h-64 md:h-72 rounded-2xl overflow-hidden group shadow-sm cursor-pointer"
+                onClick={() => setFotoAmpliada(rutaFoto)} // Al hacer clic, abre la foto en grande
+              >
+                <Image 
+                  src={rutaFoto} 
+                  alt={`Velero Leon Tenerife foto ${index + 1}`} 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
+                
+                {/* Capa oscura y el icono de lupa que aparece al pasar el ratón */}
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full text-white">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
+          
         </div>
       </section>
 
