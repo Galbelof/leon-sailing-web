@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "León Sailing Tenerife | Chárter Privado y Alquiler de Veleros",
+  title: "Leon Sailing Tenerife | Chárter Privado y Alquiler de Veleros",
   description: "Descubre la costa de Tenerife desde el mar. Alquiler de velero privado, excursiones exclusivas, avistamiento de cetáceos y atardeceres inolvidables.",
   keywords: ["velero tenerife", "alquiler barco tenerife", "charter privado", "excursiones en barco", "leon sailing", "costa adeje"],
   openGraph: {
@@ -30,6 +30,13 @@ export const metadata: Metadata = {
     ],
     locale: "es_ES",
     type: "website",
+  },
+  alternates: {
+    canonical: "https://www.leonsailingtenerife.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
