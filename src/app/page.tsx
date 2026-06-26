@@ -2,6 +2,19 @@
 
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react"; 
+import { Dancing_Script, Inter } from "next/font/google"; 
+
+// Configuramos la fuente cursiva para el eslogan
+const dancingScript = Dancing_Script({ 
+  subsets: ["latin"],
+  weight: ["400", "700"]
+});
+
+// Configuramos la nueva fuente Inter para toda la web
+const inter = Inter({ 
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"]
+});
 
 export default function Home() {
   const [idioma, setIdioma] = useState("es");
@@ -39,7 +52,10 @@ export default function Home() {
   const telefonoWhatsApp = "34631596309"; 
   const telefonoFormateado = "+34 631 59 63 09"; 
   const emailContactobarco = "leonsailingtenerife@gmail.com";
-  const emailContactoalquiler = "maureen@whitehotdesign.it";
+  
+  // Datos de la Inmobiliaria
+  const webContactoalquiler = "Mlteneriferealestate.com";
+  const emailContactoInmo2 = "lacchinimaureen@gmail.com"; 
 
   const fotosGaleria = [
     "/galeria-1.jpg",
@@ -59,8 +75,8 @@ export default function Home() {
       btnWhatsapp: "Reservar por WhatsApp",
       btnEmail: "Contactar por Email",
       derechos: "Todos los derechos reservados.",
-      mensajeWa: "¡Hola! Estoy interesado en alquilar el velero León. ¿Me das más información?",
-      asuntoEmail: "Consulta%20Alquiler%20Velero%20León",
+      mensajeWa: "¡Hola! Estoy interesado en alquilar el velero Leon. ¿Me das más información?",
+      asuntoEmail: "Consulta%20Alquiler%20Velero%20Leon",
       
       secTenerife: "Un paraíso por descubrir",
       tenP1: "Hay lugares que se visitan y lugares que se sienten. Tenerife pertenece a estos últimos. Bañada por las aguas azules del Atlántico y moldeada por la fuerza de los volcanes, la isla ofrece algunos de los paisajes marinos más espectaculares del mundo.",
@@ -73,20 +89,18 @@ export default function Home() {
       ubiRutasDesc: "Dependiendo de los días que alquiles, podemos navegar por la costa de Tenerife o emprender travesías más largas hacia nuestras islas vecinas: La Gomera, La Palma o El Hierro.",
 
       secGaleriaPre: "Nuestro Velero",
-      secGaleriaTitulo: "El León",
+      secGaleriaTitulo: "El Leon",
       secGaleriaDesc: "Haz clic en las imágenes para ver cada detalle de nuestro barco, diseñado para garantizar tu confort y seguridad.",
       
-      secHistoria: "Nuestra Historia",
-      histSub: "Bienvenidos a bordo de León.",
+      secHistoria: "Sobre Nosotros",
+      histSub: "Bienvenidos a bordo de Leon.",
       histP1: "Somos una familia unida por el amor al mar, la aventura y la belleza de Tenerife. Nuestra historia comenzó hace años durante unas vacaciones en un barco en Italia, donde nos conocimos. Desde entonces, la navegación se convirtió en una forma de vida que hoy compartimos con nuestra hija Isabel.",
-      histP2: "El capitán de León cuenta con una amplia experiencia en navegación y formación en ingeniería, garantizando la máxima seguridad. Por mi parte, como diseñadora de interiores y agente inmobiliaria, cuido cada detalle para que nuestros huéspedes disfruten de una experiencia especial y personalizada.",
+      histP2: "El capitán de Leon cuenta con una amplia experiencia en navegación y formación en ingeniería, garantizando la máxima seguridad. Por mi parte, como diseñadora de interiores y agente inmobiliaria, cuido cada detalle para que nuestros huéspedes disfruten de una experiencia especial y personalizada.",
       
       secInmo: "Tu hogar en Tenerife",
       inmoDesc: "Si durante su estancia descubren que Tenerife es el lugar donde les gustaría vivir o invertir, estaremos encantados de asesorarles como agentes inmobiliarios. Les ayudaremos a encontrar la propiedad ideal y les acompañaremos en todo el proceso.",
       
       ctaFinal: "¿Listo para tu aventura en el Atlántico?",
-
-      // Textos Legales
       avisoLegal: "Aviso Legal",
       privacidad: "Política de Privacidad",
       cookies: "Política de Cookies",
@@ -99,8 +113,8 @@ export default function Home() {
       btnWhatsapp: "Book via WhatsApp",
       btnEmail: "Contact via Email",
       derechos: "All rights reserved.",
-      mensajeWa: "Hello! I am interested in renting the León sailboat. Can I get more information?",
-      asuntoEmail: "León%20Sailboat%20Rental%20Inquiry",
+      mensajeWa: "Hello! I am interested in renting the Leon sailboat. Can I get more information?",
+      asuntoEmail: "Leon%20Sailboat%20Rental%20Inquiry",
       
       secTenerife: "A Paradise Waiting to Be Discovered",
       tenP1: "There are places you visit, and there are places you truly experience. Tenerife belongs to the latter. Surrounded by the deep blue waters of the Atlantic Ocean and shaped by the power of volcanic forces, the island offers some of the most breathtaking seascapes in the world.",
@@ -113,20 +127,18 @@ export default function Home() {
       ubiRutasDesc: "Depending on the days you charter, we can sail along the coast of Tenerife or embark on longer journeys to our neighboring islands: La Gomera, La Palma, or El Hierro.",
 
       secGaleriaPre: "Our Sailboat",
-      secGaleriaTitulo: "The León",
+      secGaleriaTitulo: "Leon Sailing Vessel",
       secGaleriaDesc: "Click on the images to see every detail of our boat, designed to ensure your comfort and safety.",
       
       secHistoria: "Our Story",
-      histSub: "Welcome Aboard León.",
+      histSub: "Welcome Aboard Leon.",
       histP1: "We are a family united by our love for the sea, adventure, and the beauty of Tenerife. Our story began years ago during a sailing holiday in Italy, where we met. Since then, sailing has become a way of life that we now share with our daughter Isabel.",
-      histP2: "The captain of León has extensive sailing experience and a degree in Engineering, ensuring the highest standards of safety. As an interior designer and real estate agent, I take care of every detail to ensure our guests enjoy a special and personalized experience.",
+      histP2: "The captain of Leon has extensive sailing experience and a degree in Engineering, ensuring the highest standards of safety. As an interior designer and real estate agent, I take care of every detail to ensure our guests enjoy a special and personalized experience.",
       
       secInmo: "Your Home in Tenerife",
       inmoDesc: "If during your stay you discover that Tenerife is a place where you would like to live or invest, we would be delighted to assist you as real estate agents. We will help you find the ideal property and guide you through every step of the process.",
       
       ctaFinal: "Ready for your Atlantic adventure?",
-
-      // Textos Legales
       avisoLegal: "Legal Notice",
       privacidad: "Privacy Policy",
       cookies: "Cookies Policy",
@@ -137,9 +149,58 @@ export default function Home() {
   const mensajeWhatsApp = encodeURIComponent(t.mensajeWa);
   
   return (
-    <main className="w-full font-sans bg-[#F8FAFC] relative">
+    <main className={`w-full bg-[#F8FAFC] relative ${inter.className}`}>
       
       <audio ref={audioRef} src="/musica.mp3" loop />
+
+      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm shadow-sm px-6 md:px-12 py-2 flex justify-between items-center transition-all">
+        
+        <div className="flex items-center">
+          <Image 
+            src="/logo-oscuro.png" 
+            alt="Leon Tenerife" 
+            width={120} 
+            height={40} 
+            className="object-contain" 
+          />
+        </div>
+
+        <div className="flex items-center gap-3 md:gap-5">
+          
+          <button 
+            onClick={toggleAudio}
+            className="flex items-center justify-center w-8 h-8 md:w-9 md:h-9 bg-slate-100 rounded-full border border-slate-200 text-slate-700 transition-all hover:bg-slate-200 hover:scale-105 shadow-sm"
+            title={isPlaying ? "Pausar música" : "Reproducir música"}
+          >
+            {isPlaying ? (
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z"/></svg>
+            ) : (
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+            )}
+          </button>
+
+          <div className="flex items-center gap-1.5 bg-slate-100 rounded-full p-0.5 border border-slate-200 shadow-inner">
+            <button 
+              onClick={() => setIdioma("es")}
+              className={`relative w-7 h-7 md:w-8 md:h-8 rounded-full overflow-hidden transition-all duration-300 ${
+                idioma === "es" ? "ring-2 ring-sky-500 scale-105 shadow-md" : "opacity-50 hover:opacity-100"
+              }`}
+              title="Español"
+            >
+              <Image src="/es.png" alt="Español" fill className="object-cover" />
+            </button>
+            <button 
+              onClick={() => setIdioma("en")}
+              className={`relative w-7 h-7 md:w-8 md:h-8 rounded-full overflow-hidden transition-all duration-300 ${
+                idioma === "en" ? "ring-2 ring-sky-500 scale-105 shadow-md" : "opacity-50 hover:opacity-100"
+              }`}
+              title="English"
+            >
+              <Image src="/en.png" alt="English" fill className="object-cover" />
+            </button>
+          </div>
+        </div>
+      </header>
 
       {fotoAmpliada && (
         <div 
@@ -157,17 +218,12 @@ export default function Home() {
             className="relative w-full max-w-6xl h-[85vh]" 
             onClick={(e) => e.stopPropagation()} 
           >
-            <Image 
-              src={fotoAmpliada} 
-              alt="Velero Ampliado" 
-              fill 
-              className="object-contain" 
-            />
+            <Image src={fotoAmpliada} alt="Velero Ampliado" fill className="object-contain" />
           </div>
         </div>
       )}
       
-      <section className="relative min-h-screen w-full flex flex-col justify-between p-6 md:p-12 text-white overflow-hidden">
+      <section className="relative h-[calc(100vh-56px)] min-h-[600px] w-full flex flex-col p-6 md:p-12 text-white overflow-hidden">
         
         <div className="absolute inset-0 z-0 bg-black">
           <video
@@ -182,57 +238,12 @@ export default function Home() {
           </video>
         </div>
 
-        <header className="relative z-10 flex justify-between items-center w-full">
-          <div className="flex items-center gap-4">
-            <Image 
-              src="/logo-limpio.png" 
-              alt="Leon Tenerife" 
-              width={180} 
-              height={60} 
-              className="object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" 
-            />
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={toggleAudio}
-              className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-black/20 backdrop-blur-md rounded-full border border-white/20 text-white transition-all hover:bg-white/20 hover:scale-105"
-              title={isPlaying ? "Pausar música" : "Reproducir música"}
-            >
-              {isPlaying ? (
-                <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM3 9v6h4l5 5V4L7 9H3z"/></svg>
-              ) : (
-                <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-              )}
-            </button>
-
-            <div className="flex items-center gap-2 bg-black/20 backdrop-blur-md rounded-full p-1.5 border border-white/20">
-              <button 
-                onClick={() => setIdioma("es")}
-                className={`relative w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden transition-all duration-300 ${
-                  idioma === "es" ? "ring-2 ring-white scale-110 shadow-lg" : "opacity-60 hover:opacity-100"
-                }`}
-                title="Español"
-              >
-                <Image src="/es.png" alt="Español" fill className="object-cover" />
-              </button>
-              <button 
-                onClick={() => setIdioma("en")}
-                className={`relative w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden transition-all duration-300 ${
-                  idioma === "en" ? "ring-2 ring-white scale-110 shadow-lg" : "opacity-60 hover:opacity-100"
-                }`}
-                title="English"
-              >
-                <Image src="/en.png" alt="English" fill className="object-cover" />
-              </button>
-            </div>
-          </div>
-        </header>
-
-        <div className="relative z-10 max-w-3xl my-auto pt-12 md:pt-0">
-          <span className="inline-block py-1 px-3 mb-6 border border-sky-400/50 rounded-full text-sky-300 text-xs md:text-sm font-semibold tracking-widest uppercase backdrop-blur-sm bg-black/20">
+        <div className="relative z-10 max-w-3xl my-auto">
+          
+          <span className={`block mb-4 text-sky-300 text-3xl md:text-4xl drop-shadow-md ${dancingScript.className}`}>
             {t.slogan}
           </span>
+
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight transition-all duration-300 drop-shadow-lg">
             {t.titulo1} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-200">
@@ -257,7 +268,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative z-10 w-full flex justify-center pb-4 opacity-80 animate-bounce hidden md:flex drop-shadow-md">
+        <div className="absolute bottom-6 left-0 right-0 z-10 w-full flex justify-center opacity-80 animate-bounce hidden md:flex drop-shadow-md">
           <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
       </section>
@@ -299,7 +310,6 @@ export default function Home() {
 
       <section className="py-20 px-6 md:px-12 bg-slate-50 border-t border-slate-200">
         <div className="max-w-6xl mx-auto">
-          
           <div className="text-center mb-12">
             <span className="text-sky-600 font-bold tracking-widest uppercase text-sm mb-2 block">
               {t.secGaleriaPre}
@@ -333,7 +343,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-          
         </div>
       </section>
 
@@ -362,15 +371,22 @@ export default function Home() {
               <p className="text-slate-600 font-light leading-relaxed mb-6">
                 {t.inmoDesc}
               </p>
-              <a href={`mailto:${emailContactoalquiler}?subject=Real%20Estate%20Inquiry`} className="inline-flex items-center text-sky-600 font-semibold hover:text-sky-700 transition-colors">
-                {t.btnEmail} <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </a>
+              
+              <div className="flex flex-col gap-3">
+                <a href={`https://${webContactoalquiler}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sky-600 font-semibold hover:text-sky-700 transition-colors">
+                  🌐 {webContactoalquiler}
+                </a>
+                <a href={`mailto:${emailContactoInmo2}?subject=Real%20Estate%20Inquiry`} className="inline-flex items-center text-sky-600 font-semibold hover:text-sky-700 transition-colors">
+                  ✉️ {emailContactoInmo2}
+                </a>
+              </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-900 text-white py-24 px-6 md:px-12">
+      <section className="bg-[#082065] text-white py-24 px-6 md:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-10">{t.ctaFinal}</h2>
           
@@ -384,7 +400,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/10 text-slate-400 text-sm font-light flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6">
+          <div className="mt-8 pt-6 border-t border-white/10 text-slate-300 text-sm font-light flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6">
             <p>📞 {telefonoFormateado}</p>
             <p className="hidden md:block">|</p>
             <p>✉️ {emailContactobarco}</p>
@@ -392,13 +408,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- NUEVO FOOTER CON TEXTOS LEGALES --- */}
       <footer className="bg-slate-950 text-slate-400 py-10 px-6 text-sm">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <p>© {new Date().getFullYear()} Leon Sailing Tenerife. {t.derechos}</p>
           
           <div className="flex flex-wrap justify-center items-center gap-3 md:gap-6 text-slate-500">
-            {/* Los enlaces ahora tienen "#" por defecto hasta que crees las páginas */}
             <a href="#" className="hover:text-white transition-colors">{t.avisoLegal}</a>
             <span className="hidden md:inline text-slate-700">|</span>
             <a href="#" className="hover:text-white transition-colors">{t.privacidad}</a>
