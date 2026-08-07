@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Leon Sailing Tenerife
 
-## Getting Started
+Web oficial de Leon Sailing Tenerife para consultar servicios, precios y disponibilidad del velero Leon desde Marina del Sur.
 
-First, run the development server:
+## Requisitos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 20.9 o posterior.
+- Una URL privada de Google Calendar en formato iCal para mostrar las fechas ocupadas.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuración local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Instala las dependencias:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. Copia `.env.example` como `.env.local` y añade la URL del calendario:
 
-To learn more about Next.js, take a look at the following resources:
+   ```env
+   GOOGLE_CALENDAR_ICAL_URL=https://calendar.google.com/calendar/ical/.../basic.ics
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Arranca la web:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+4. Abre `http://localhost:3000`. La ruta inicial redirige a la versión española.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Comandos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev`: inicia el entorno de desarrollo.
+- `npm run lint`: revisa el código.
+- `npm run typecheck`: comprueba los tipos de TypeScript.
+- `npm run build`: genera la versión de producción.
+- `npm run check`: ejecuta todas las comprobaciones.
+- `npm run start`: sirve una compilación de producción.
+
+## Rutas principales
+
+- `/es` y `/en`: página principal en español e inglés.
+- `/api/calendario`: fechas ocupadas del calendario privado.
+- `/api/clima`: tiempo actual en Marina del Sur.
+- `/api/webcam`: fotograma reciente del puerto.
+
+Las consultas de disponibilidad se preparan en la web y se envían por WhatsApp o correo cuando el visitante elige uno de esos canales.
